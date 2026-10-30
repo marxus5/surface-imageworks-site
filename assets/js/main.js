@@ -42,5 +42,5 @@ F.addEventListener("submit",function(e){e.preventDefault();
 if(!F.checkValidity()){var bad=F.querySelector(":invalid");S.textContent="Please complete the "+(bad.closest("label").firstChild.textContent||"required").toLowerCase()+" field.";bad.focus();return}
 var d=new FormData(F),body=["Name: "+d.get("name"),"Company: "+d.get("company"),"Email: "+d.get("email"),"Role: "+d.get("role"),"Material: "+d.get("material"),"","Details:",d.get("details")].join("\n");
 S.textContent="Opening your email app with the request.";
-location.href="mailto:"+CONTACT_EMAIL+"?subject="+encodeURIComponent("Quote request from "+d.get("company"))+"&body="+encodeURIComponent(body)});
+location.href="mailto:"+CONTACT_EMAIL+"?subject="+encodeURIComponent("Surface Imageworks quote request from "+d.get("company"))+"&body="+encodeURIComponent(body)});
 })();
