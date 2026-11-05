@@ -51,8 +51,13 @@ module.exports = async function handler(req, res) {
   const gmailUser = process.env.GMAIL_USER;
   const appPassword = process.env.GMAIL_APP_PASSWORD;
   const contactTo = process.env.CONTACT_TO || gmailUser;
+  const bccEmails = (process.env.BCC_EMAILS || "").split(",").map((address) => address.trim()).filter(Boolean);
   if (!gmailUser || !appPassword || !contactTo) {
     console.error("Contact form email environment variables are not configured.");
+    return sendError(res, 503, "The contact form is temporarily unavailable. Please email surfaceimageworks@gmail.com.");
+  }
+  if (bccEmails.some((address) => !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(address))) {
+    console.error("The BCC_EMAILS environment variable contains an invalid email address.");
     return sendError(res, 503, "The contact form is temporarily unavailable. Please email surfaceimageworks@gmail.com.");
   }
 
@@ -76,8 +81,8 @@ module.exports = async function handler(req, res) {
     }
 
     const imageType = IMAGE_TYPES[file.type];
-    if (!imageType || file.data.length > Math.ceil(MAX_IMAGE_BYTES / 3) * 4 + 4 || !/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/.test(file.data)) {
-      return sendError(res, 400, "Please attach a JPG, PNG, GIF, or WebP image smaller than 3 MB.");
+    if (!imageType || file.data.length > Math.ceil(MAX_IMAGE_BYTES / 3) * 4 + 4 || file.data.length % 4 !== 0 || /[^A-Za-z0-9+/=]/.test(file.data)) {
+      return sendError(res, 400, "Please attach a JPG, PNG, GIF, or WebP image no larger than 3 MB.");
     }
     const content = Buffer.from(file.data, "base64");
     if (!content.length || content.length > MAX_IMAGE_BYTES || content.toString("base64") !== file.data || !imageType.matches(content)) {
@@ -104,6 +109,7 @@ module.exports = async function handler(req, res) {
     await transporter.sendMail({
       from: { name: "Surface Imageworks Website", address: gmailUser },
       to: contactTo,
+      bcc: bccEmails,
       replyTo: email,
       subject: "New quote request from Surface Imageworks",
       text: fields.map(([label, value]) => `${label}: ${value || "Not provided"}`).join("\n"),

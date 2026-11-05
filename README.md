@@ -32,7 +32,7 @@ Or from a terminal: `npx vercel` (preview) then `npx vercel --prod`.
 - Quote requests are sent by the Vercel function in `api/contact.js` through Gmail SMTP to `surfaceimageworks@gmail.com`. Sample images (JPG, PNG, GIF, or WebP up to 3 MB) are attached to the email.
 - To enable email sending:
   1. In the Google Account for `surfaceimageworks@gmail.com`, enable 2-Step Verification and create an App Password. Google may not offer App Passwords for every account configuration.
-  2. In Vercel, open the project's **Settings > Environment Variables** and add `GMAIL_USER` (`surfaceimageworks@gmail.com`), `GMAIL_APP_PASSWORD` (the generated App Password), and `CONTACT_TO` (`surfaceimageworks@gmail.com`). Keep the App Password private; never commit it or put it in browser code.
+  2. In Vercel, open the project's **Settings > Environment Variables** and add `GMAIL_USER` (`surfaceimageworks@gmail.com`), `GMAIL_APP_PASSWORD` (the generated App Password), and `CONTACT_TO` (`surfaceimageworks@gmail.com`). Optionally add `BCC_EMAILS` with one or more comma-separated recipient addresses. Keep the App Password private; never commit it or put it in browser code.
   3. Redeploy after adding the variables. Submit a test request from the deployed site and check the Gmail inbox and spam folder.
 - Quote submissions need a deployed Vercel site or `vercel dev`; they cannot send from a static Live Server preview. Gmail sending limits apply.
 - The material artwork is generated for illustration. Replace it with approved production imagery when available; the material definitions are in `assets/js/main.js`.
