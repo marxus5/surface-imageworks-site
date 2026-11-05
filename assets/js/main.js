@@ -1,5 +1,4 @@
 (function(){
-var CONTACT_EMAIL="contact@surfaceimageworks.com";
 var T={
 qo:{n:"Quarter-cut white oak",d:"Straight, even grain with a tight linear figure.",c:"wood",f:".5 .005",o:3,s:3,m:[.74,.6,.42],k:2,w:[.9,.7]},
 ro:{n:"Rift-cut white oak",d:"Fine, consistent lines with minimal flare.",c:"wood",f:".9 .004",o:3,s:8,m:[.72,.62,.48],k:1.7,w:[.9,.75]},
@@ -38,9 +37,20 @@ if("IntersectionObserver"in window){var io=new IntersectionObserver(function(es)
 document.getElementById("yr").textContent=new Date().getFullYear();
 // form
 var F=document.getElementById("f"),S=document.getElementById("status");
-F.addEventListener("submit",function(e){e.preventDefault();
+F.addEventListener("submit",async function(e){e.preventDefault();
 if(!F.checkValidity()){var bad=F.querySelector(":invalid");S.textContent="Please complete the "+(bad.closest("label").firstChild.textContent||"required").toLowerCase()+" field.";bad.focus();return}
-var d=new FormData(F),body=["Name: "+d.get("name"),"Company: "+d.get("company"),"Email: "+d.get("email"),"Role: "+d.get("role"),"Material: "+d.get("material"),"","Details:",d.get("details")].join("\n");
-S.textContent="Opening your email app with the request.";
-location.href="mailto:"+CONTACT_EMAIL+"?subject="+encodeURIComponent("Quote request from "+d.get("company"))+"&body="+encodeURIComponent(body)});
+var d=new FormData(F),sample=d.get("sampleImage"),attachment=null,button=F.querySelector('[type="submit"]');
+if(sample&&sample.size){
+if(sample.size>3*1024*1024){S.textContent="Please choose an image smaller than 3 MB.";return}
+try{var bytes=new Uint8Array(await sample.arrayBuffer()),binary="";for(var i=0;i<bytes.length;i+=32768)binary+=String.fromCharCode.apply(null,bytes.subarray(i,i+32768));attachment={name:sample.name,type:sample.type,data:btoa(binary)}}catch(error){S.textContent="The image could not be read. Please try selecting it again.";return}
+}
+var payload={name:d.get("name"),company:d.get("company"),email:d.get("email"),material:d.get("material"),projectName:d.get("projectName"),imageSize:d.get("imageSize"),finalResolution:d.get("finalResolution"),fileType:d.get("fileType"),resolution:d.get("resolution"),details:d.get("details"),website:d.get("website"),attachment:attachment};
+button.disabled=true;S.textContent="Sending your request...";
+try{
+var response=await fetch("/api/contact",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)}),result=await response.json();
+if(!response.ok)throw new Error(result.error||"Your request could not be sent. Please try again.");
+F.reset();S.textContent="Thanks! Your request has been sent. We’ll be in touch soon.";
+}catch(error){S.textContent=error.message||"Your request could not be sent. Please try again, or email surfaceimageworks@gmail.com."}
+finally{button.disabled=false}
+});
 })();

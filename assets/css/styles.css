@@ -1,4 +1,4 @@
-:root{color-scheme:light;--bg:#fff;--bg2:#EEEDE7;--ink:#1C1F21;--mute:#5A6064;--line:#D5D8D2;--acc:#c79e79;--accink:#1C1F21;
+:root{color-scheme:light;--bg:#fff;--bg2:#EEEDE7;--ink:#1C1F21;--mute:#5A6064;--line:#D5D8D2;--acc:#E2D4BD;--accink:#1C1F21;
 --sans:"Archivo","Helvetica Neue",Arial,sans-serif;--serif:"Newsreader",Georgia,"Times New Roman",serif;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 html{scroll-behavior:smooth;scroll-padding-top:calc(72px + env(safe-area-inset-top,0px))}
 *,*::before,*::after{box-sizing:border-box}
@@ -86,7 +86,13 @@ dialog button{font:600 .9rem var(--sans);background:none;border:1px solid var(--
 #about{border-top:1px solid var(--line)}
 form{display:grid;gap:18px}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+#contact .contact-intro{margin-bottom:32px}
+#contact form{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 32px}
+#contact .row{display:contents}
+#contact .form-wide,#contact form>.btn,#contact .form-note,#contact .status{grid-column:1/-1}
+.form-trap{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
 @media (max-width:560px){.row{grid-template-columns:1fr}}
+@media (max-width:700px){#contact form{grid-template-columns:1fr}#contact .row{display:grid;grid-template-columns:1fr;gap:18px}}
 label{display:grid;gap:6px;font:600 .9rem var(--sans)}
 input,select,textarea{font:400 1rem var(--sans);color:var(--ink);background:transparent;border:0;border-bottom:1px solid var(--ink);padding:10px 0;border-radius:0;width:100%}
 textarea{min-height:120px;resize:vertical}

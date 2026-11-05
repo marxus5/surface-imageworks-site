@@ -3,19 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>SURFACE IMAGEWORKS | Precision Imagery. Production Ready.</title>
+<title>Surface Imageworks | Precision Imagery. Production Ready.</title>
 <meta name="description" content="High-resolution architectural surface imagery for manufacturers, fabricators, and design teams, beginning with premium wood grain.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <meta name="theme-color" content="#ffffff">
 <link rel="canonical" href="https://surfaceimageworks.com/">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="SURFACE IMAGEWORKS">
-<meta property="og:title" content="SURFACE IMAGEWORKS | Precision Imagery. Production Ready.">
+<meta property="og:site_name" content="Surface Imageworks">
+<meta property="og:title" content="Surface Imageworks | Precision Imagery. Production Ready.">
 <meta property="og:description" content="High-resolution architectural surface imagery for manufacturers, fabricators, and design teams, beginning with premium wood grain.">
 <meta property="og:url" content="https://surfaceimageworks.com/">
 <meta name="twitter:card" content="summary">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Organization","name":"SURFACE IMAGEWORKS","slogan":"Precision Imagery. Production Ready.","url":"https://surfaceimageworks.com/","email":"contact@surfaceimageworks.com","description":"Commercial digital imaging, architectural surface design, and production-ready digital artwork."}
+{"@context":"https://schema.org","@type":"Organization","name":"Surface Imageworks","slogan":"Precision Imagery. Production Ready.","url":"https://surfaceimageworks.com/","email":"surfaceimageworks@gmail.com","description":"Commercial digital imaging, architectural surface design, and production-ready digital artwork."}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -42,7 +42,7 @@
 
 <section id="services"><div class="wrap">
 <h2>Surface imagery built for production.</h2>
-<p class="lede">SURFACE IMAGEWORKS supplies commercial digital imaging to teams that reproduce surfaces at scale. We start with wood and work across the materials architects specify.</p>
+<p class="lede">Surface Imageworks supplies commercial digital imaging to teams that reproduce surfaces at scale. We start with wood and work across the materials architects specify.</p>
 <div class="svc-photo rise" data-t="ro" role="img" aria-label="Illustrative rift-cut oak grain visualization"></div>
 <div class="svcs">
 <div class="svc lead rise"><h3>Wood grain imagery</h3><p>Quarter-cut, rift-cut, and related patterns, imaged in high resolution with the grain direction, figure, and tonal range handled for reproduction.</p></div>
@@ -68,27 +68,24 @@
 <p class="lede">For each project, we align file dimensions, formats, color targets, repeat behavior, and delivery schedule with the intended application before production begins.</p>
 </div></section>
 
-<section id="process" style="background:var(--bg2)"><div class="wrap">
-<h2>How a project runs.</h2>
-<p class="lede">A short path from first conversation to delivered files.</p>
-<ol class="steps">
-<li><h3>Brief</h3><p>You tell us the material, application, and output requirements.</p></li>
-<li><h3>Develop</h3><p>We capture or build the imagery to that specification.</p></li>
-<li><h3>Review</h3><p>You check the work against your standards and request changes.</p></li>
-<li><h3>Deliver</h3><p>Final production files arrive ready for your workflow.</p></li>
-</ol></div></section>
 
-<section id="contact" style="border-top:1px solid var(--line)"><div class="wrap two">
-<div><h2>Request a quote.</h2><p class="lede" style="margin-bottom:0">Tell us what you are producing. We will reply with questions or a proposal.</p>
-<p class="direct">Email: <a href="mailto:contact@surfaceimageworks.com">contact@surfaceimageworks.com</a></p></div>
+<section id="contact" style="border-top:1px solid var(--line)"><div class="wrap">
+<div class="contact-intro"><h2>Request a quote.</h2><p class="lede" style="margin-bottom:0">Tell us what you are looking for and we will get back with you with any additional questions and a quote.</p>
+<p class="direct">Email: <a href="mailto:surfaceimageworks@gmail.com">surfaceimageworks@gmail.com</a></p></div>
 <form id="f" novalidate>
 <div class="row"><label>Name<input name="name" required autocomplete="name"></label><label>Company<input name="company" required autocomplete="organization"></label></div>
-<div class="row"><label>Email<input name="email" type="email" required autocomplete="email"></label><label>Role<input name="role" autocomplete="organization-title"></label></div>
-<label>Material of interest<select name="material"><option>Wood grain</option><option>Stone</option><option>Fabric</option><option>Decorative finish</option><option>Custom imaging</option><option>Not sure yet</option></select></label>
-<label>Project details<span class="field-hint" id="details-hint">Share the application, target size, volume, and desired timeline.</span><textarea name="details" required aria-describedby="details-hint"></textarea></label>
+<div class="row"><label>Email<input name="email" type="email" required autocomplete="email"></label></div>
+<label>Project name<input name="projectName" autocomplete="off"></label>
+<label>Material of interest<select name="material"><option>Wood grain</option><option>Stone</option><option>Fabric</option><option>Custom imaging</option><option>Not sure yet</option></select></label>
+<label>Final image size<input name="imageSize" placeholder="e.g. 48 × 96 in"></label>
+<label>Image resolution at final<input name="finalResolution" placeholder="e.g. 6000 × 12000 px"></label>
+<label>File type<select name="fileType"><option value="">Select a file type</option><option>.pdf</option><option>.jpg</option><option>.pif</option><option>.eps</option><option>.tif</option><option>Other</option></select></label>
+<label>Resolution<select name="resolution"><option value="">Select a resolution</option><option>150 ppi</option><option>100 ppi</option><option>200 ppi</option><option>Other / not sure</option></select></label>
+<label>Upload sample image here<span class="field-hint" id="sample-hint">Attach a JPG, PNG, GIF, or WebP image up to 3 MB.</span><input name="sampleImage" type="file" accept="image/jpeg,image/png,image/gif,image/webp" aria-describedby="sample-hint"></label>
+<label class="form-wide">Additional details about project<span class="field-hint" id="details-hint">Share the application, volume, desired timeline, or anything else we should know.</span><textarea name="details" aria-describedby="details-hint"></textarea></label>
+<div class="form-trap" aria-hidden="true"><label>Leave this field empty<input name="website" tabindex="-1" autocomplete="off"></label></div>
 <button class="btn" type="submit">Send request</button>
-<p class="form-note">Your email app will open with your request ready to send.</p>
-<p class="status" id="status" role="status"></p>
+<p class="status form-wide" id="status" role="status"></p>
 </form></div></section>
 </main>
 
